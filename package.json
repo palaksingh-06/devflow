@@ -12,12 +12,14 @@
     "@clerk/nextjs": "^6.12.8",
     "@monaco-editor/react": "^4.7.0",
     "convex": "^1.45.0",
+    "framer-motion": "^13.2.0",
     "lucide-react": "^1.41.0",
     "next": "^15.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "svix": "^1.99.1",
-    "swr": "^2.3.4"
+    "swr": "^2.3.4",
+    "zustand": "^5.0.15"
   },
   "devDependencies": {
     "@types/node": "^20",
