@@ -17,6 +17,7 @@
     "next": "^15.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hot-toast": "^2.6.0",
     "react-syntax-highlighter": "^16.1.1",
     "svix": "^1.99.1",
     "swr": "^2.3.4",

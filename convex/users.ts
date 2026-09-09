@@ -25,7 +25,7 @@ export const syncUser = mutation({
   },
 });
 
-export const getUsers = query(
+export const getUser = query(
   {
     args:{userId:v.string()},
     handler:async (ctx , args)=>{
