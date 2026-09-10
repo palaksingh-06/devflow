@@ -8,7 +8,7 @@ const OutputPanel = () => {
   const [isCopied, setIsCopied]=useState(false);
   const hasContent =error || output;
 
-  const handlecopy=async ()=>{
+  const handleCopy=async ()=>{
     if(!hasContent)
       return;
     await navigator.clipboard.writeText(error || output);

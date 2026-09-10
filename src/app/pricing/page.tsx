@@ -98,7 +98,7 @@ async function PricingPage() {
                     </span>
                     <span className="text-xl text-gray-400">one-time</span>
                   </div>
-                  <p className="text-gray-400 text-lg">Unlock the full potential of CodeCraft</p>
+                  <p className="text-gray-400 text-lg">Unlock the full potential of DevFlow</p>
                 </div>
 
                 {/* Features grid */}
