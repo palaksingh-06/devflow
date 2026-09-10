@@ -1,45 +1,39 @@
-import { Boxes, Globe, RefreshCcw, Shield } from "lucide-react";
+import { Code2, Palette, Terminal, LockKeyhole } from "lucide-react";
 
 export const ENTERPRISE_FEATURES = [
   {
-    icon: Globe,
-    label: "Global Infrastructure",
-    desc: "Lightning-fast execution across worldwide edge nodes",
+    icon: Terminal,
+    label: "Multi-language Execution",
+    desc: "Run code in multiple programming languages",
   },
   {
-    icon: Shield,
-    label: "Enterprise Security",
-    desc: "Bank-grade encryption and security protocols",
+    icon: Code2,
+    label: "Advanced Code Editor",
+    desc: "A powerful browser-based coding environment",
   },
   {
-    icon: RefreshCcw,
-    label: "Real-time Sync",
-    desc: "Instant synchronization across all devices",
+    icon: Palette,
+    label: "Custom Themes",
+    desc: "Choose from multiple editor themes",
   },
   {
-    icon: Boxes,
-    label: "Unlimited Storage",
-    desc: "Store unlimited snippets and projects",
+    icon: LockKeyhole,
+    label: "Pro Language Access",
+    desc: "Unlock additional programming languages with Pro",
   },
 ];
 
 export const FEATURES = {
   development: [
-    "Advanced AI",
-    "Custom theme builder",
-    "Integrated debugging tools",
-    "Multi-language support",
+    "Multi-language code execution",
+    "Multiple editor themes",
+    "Interactive code editor",
+    "Pro language access",
   ],
+
   collaboration: [
-    "Real-time pair programming",
-    "Team workspaces",
-    "Version control integration",
-    "Code review tools",
+    "Code snippets",
+    "Snippet management",
   ],
-  deployment: [
-    "One-click deployment",
-    "CI/CD integration",
-    "Container support",
-    "Custom domain mapping",
-  ],
+
 };
