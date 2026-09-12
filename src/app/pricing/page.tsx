@@ -92,9 +92,9 @@ async function PricingPage() {
                   </div>
                   <h2 className="text-3xl font-semibold text-white mb-4">Lifetime Pro Access</h2>
                   <div className="flex items-baseline justify-center gap-2 mb-4">
-                    <span className="text-2xl text-gray-400">Rupees </span>
+                    <span className="text-2xl text-gray-400">₹</span>
                     <span className="text-6xl font-semibold bg-gradient-to-r from-gray-100 to-gray-300 text-transparent bg-clip-text">
-                      59
+                      49.99
                     </span>
                     <span className="text-xl text-gray-400">one-time</span>
                   </div>
@@ -125,7 +125,7 @@ async function PricingPage() {
                 {/* CTA */}
                 <div className="flex justify-center">
                   <SignedIn>
-                    <UpgradeButton />
+                    <UpgradeButton email={user?.emailAddresses[0]?.emailAddress} userId={user?.id} />
                   </SignedIn>
 
                   <SignedOut>
