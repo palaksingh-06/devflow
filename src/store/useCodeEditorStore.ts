@@ -92,7 +92,12 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
       body: JSON.stringify({
       language: runtime.language,
       version: runtime.version,
-      files: [{ content: code }],
+     files: [
+  {
+    // name: runtime,
+    content: code,
+  },
+],
     }),
     });
         const data = await response.json();
