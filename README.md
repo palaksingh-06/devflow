@@ -10,6 +10,18 @@ Built with **Next.js, TypeScript, Monaco Editor, Clerk, Convex, Docker, and a se
 
 ---
 
+### Home Page
+![DevFlow Home](screenshots/home.png)
+
+### Code Editor
+![DevFlow Editor](screenshots/editor.png)
+
+###Profile
+![Code Execution](screenshots/profile.png)
+
+### Snippet Management
+![Snippet Management](screenshots/snippet.png)
+
 ## Features
 
 ### Code Editor
