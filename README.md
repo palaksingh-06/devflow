@@ -4,7 +4,7 @@
 
 DevFlow is a full-stack SaaS platform that provides a browser-based development environment where developers can **write, run, save, and share code** from a single workspace.
 
-Built with **Next.js, TypeScript, Monaco Editor, Clerk, Convex, Docker, and a self-hosted Piston execution engine**, DevFlow combines code editing, multi-language execution, authentication, and cloud-backed snippet management into one developer-focused platform.
+Built with Next.js, TypeScript, Monaco Editor, Clerk, Convex, and an external code execution API, DevFlow combines code editing, multi-language execution, authentication, and cloud-backed snippet management into one developer-focused platform.
 
 **Write. Run. Save. Share.**
 
@@ -35,22 +35,32 @@ Built with **Next.js, TypeScript, Monaco Editor, Clerk, Convex, Docker, and a se
 
 ### Multi-Language Code Execution
 
-DevFlow integrates a **self-hosted Piston execution engine** to execute code across multiple programming language runtimes.
+DevFlow integrates the **OnlineCompiler.io API** for executing code across multiple programming languages.
 
-Supported languages currently include:
+Supported languages include:
 
-* JavaScript
-* TypeScript
-* Python
-* C++
-* Java
-* C#
-* Go
-* Rust
-* Ruby
-* Swift
+- JavaScript
+- TypeScript
+- Python
+- C++
+- Java
+- C#
+- Go
+- Rust
+- Ruby
+- Swift
 
-The execution infrastructure runs through Docker, providing isolated runtime environments for different languages.
+Features include:
+
+- Multi-language code execution
+- Standard Input (stdin) support
+- Runtime output display
+- Compilation and execution error handling
+- Server-side API integration to securely communicate with the execution provider
+
+The application uses a Next.js API route as an intermediary between the frontend and the external execution service, keeping provider credentials on the server side.
+
+Code execution currently uses batch input: users provide standard input before running their programs.
 
 ### Authentication
 
@@ -89,32 +99,28 @@ This will allow DevFlow to evolve from a free coding workspace into a platform w
 
 # Tech Stack
 
-| Technology        | Purpose                                 |
-| ----------------- | --------------------------------------- |
-| **Next.js**       | Full-stack web application              |
-| **React**         | Frontend UI                             |
-| **TypeScript**    | Type-safe development                   |
-| **Monaco Editor** | Browser-based code editor               |
-| **Tailwind CSS**  | UI styling                              |
-| **Clerk**         | Authentication                          |
-| **Convex**        | Backend and database                    |
-| **Piston**        | Code execution engine                   |
-| **Docker**        | Isolated execution environments         |
-| **Framer Motion** | UI animations                           |
-| **Lucide React**  | Interface icons                         |
-| **Lemon Squeezy** | Subscription and payment infrastructure |
+| Technology                 | Purpose                                 |
+| -------------------------- | --------------------------------------- |
+| **Next.js**                | Full-stack web application              |
+| **React**                  | Frontend UI                             |
+| **TypeScript**             | Type-safe development                   |
+| **Monaco Editor**          | Browser-based code editor               |
+| **Tailwind CSS**           | UI styling                              |
+| **Clerk**                  | Authentication                          |
+| **Convex**                 | Backend and database                    |
+| **OnlineCompiler.io API**  | Multi-language code execution           |
+| **Framer Motion**          | UI animations                           |
+| **Lucide React**           | Interface icons                         |
+| **Lemon Squeezy**          | Subscription and payment infrastructure |
 
 # Getting Started
 
 ## Prerequisites
 
 Make sure you have the following installed:
-
 * Node.js
 * npm
-* Docker
 * Git
-
 You will also need accounts/configuration for:
 
 * Clerk
@@ -149,12 +155,16 @@ npm install
 Create a `.env.local` file in the project root:
 
 ```env
+
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+CLERK_SECRET_KEY=your_clerk_secret_key
 
 NEXT_PUBLIC_CONVEX_URL=your_convex_url
 NEXT_PUBLIC_CONVEX_SITE_URL=your_convex_site_url
 
-PISTON_URL=http://localhost:2000
+PISTON_URL=https://api.onlinecompiler.io/api/v2/piston
+ONLINECOMPILER_API_KEY=your_onlinecompiler_api_key
+
 ```
 
 Do not commit `.env.local` or any secret credentials to the repository.
@@ -170,20 +180,18 @@ npx convex dev
 ```
 
 ---
+## Code Execution Configuration
 
-# Running Piston
+DevFlow uses the OnlineCompiler.io API for code execution.
 
-DevFlow uses a self-hosted Piston instance for code execution.
+Configure the following environment variables in `.env.local`:
 
-The local Piston API is expected to run at:
+- `PISTON_URL`
+- `ONLINECOMPILER_API_KEY`
 
-```text
-http://localhost:2000
-```
+The Next.js backend forwards execution requests to the external provider and returns the execution results to the frontend.
 
-Make sure Docker is running and the required Piston runtimes are available before executing code through DevFlow.
-
----
+No local Piston Docker container is required for the current execution setup.
 
 # Running the Application
 
@@ -206,7 +214,7 @@ DevFlow is designed with separate frontend and backend responsibilities.
 * Authentication is handled through Clerk.
 * Protected snippet operations verify authentication on the backend.
 * Code execution is handled through the Piston service rather than directly on the application server.
-* Piston runtimes are containerized using Docker.
+* External execution provider credentials are stored in server-side environment variables.
 * Sensitive environment variables are kept outside the source code.
 
 
