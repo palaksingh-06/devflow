@@ -31,6 +31,7 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
   return {
     ...initialState,
     output: "",
+    stdin: "",
     isRunning: false,
     error: null,
     editor: null,
@@ -54,6 +55,7 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
       localStorage.setItem("editor-font-size", fontSize.toString());
       set({ fontSize });
     },
+    setStdin: (stdin: string) => set({ stdin }),
 
     setLanguage: (language: string) => {
       // Save current language code before switching
@@ -72,8 +74,9 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
     },
 
     runCode: async () => {
-      const { language, getCode } = get();
+      const { language, getCode, stdin } = get();
       const code = getCode();
+      console.log("Zustand stdin value:", JSON.stringify(stdin));
 
       if (!code) {
         set({ error: "Please enter some code" });
@@ -97,7 +100,7 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
     // name: runtime,
     content: code,
   },
-],
+],stdin,
     }),
     });
         const data = await response.json();
@@ -141,11 +144,11 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
         const output = data.run.output;
 
         set({
-          output: output.trim(),
+         output: output.trimEnd(), 
           error: null,
           executionResult: {
             code,
-            output: output.trim(),
+            output: output.trimEnd(),
             error: null,
           },
         });

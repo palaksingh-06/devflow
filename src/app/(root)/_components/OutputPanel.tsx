@@ -4,7 +4,7 @@ import { useState } from "react";
 import { AlertTriangle, CheckCircle, Clock, Copy, Terminal } from "lucide-react";
 import RunningCodeSkeleton from "./RunningCodeSkeleton";
 const OutputPanel = () => {
-  const{output,error,isRunning}=useCodeEditorStore();
+  const { output, error, isRunning, stdin, setStdin } = useCodeEditorStore();
   const [isCopied, setIsCopied]=useState(false);
   const hasContent =error || output;
 
@@ -47,6 +47,25 @@ const OutputPanel = () => {
           </button>
         )}
       </div>
+
+  {/* Standard Input Area */}
+<div className="mb-4">
+  <div className="flex items-center gap-2 mb-2">
+    <Terminal className="w-4 h-4 text-blue-400" />
+    <span className="text-sm font-medium text-gray-300">
+      Standard Input
+    </span>
+  </div>
+
+  <textarea
+    value={stdin}
+    onChange={(e) => setStdin(e.target.value)}
+    placeholder="Enter your input here... (one value per line)"
+    className="w-full h-28 bg-[#1e1e2e]/50 border border-[#313244] rounded-xl p-3
+    font-mono text-sm text-gray-300 placeholder:text-gray-600
+    focus:outline-none focus:ring-1 focus:ring-blue-500 resize-y"
+  />
+</div>
 
       {/* Output Area */}
       <div className="relative">

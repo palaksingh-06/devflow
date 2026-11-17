@@ -40,6 +40,7 @@ export interface ExecutionResult {
 export interface CodeEditorState {
   language: string;
   output: string;
+  stdin: string;
   isRunning: boolean;
   error: string | null;
   theme: string;
@@ -52,6 +53,7 @@ export interface CodeEditorState {
   setLanguage: (language: string) => void;
   setTheme: (theme: string) => void;
   setFontSize: (fontSize: number) => void;
+  setStdin: (stdin: string) => void;
   runCode: () => Promise<void>;
 }
 
